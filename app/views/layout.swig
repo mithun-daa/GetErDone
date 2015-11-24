@@ -10,6 +10,7 @@
   {% endif %}
 </head>
 <body>
+  This is the Layout
   {% block content %}{% endblock %}
 </body>
 </html>

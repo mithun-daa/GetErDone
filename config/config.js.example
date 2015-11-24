@@ -9,8 +9,24 @@ var config = {
       name: 'passportfb',
     },
     port: 3000,
-    fb_id: xxx,
-    fb_secret: 'yyy'
+    auth: {
+      facebook: {
+        key: xxx,
+        secret: 'yyy'
+      },
+      twitter: {
+        key: 'xxx',
+        secret: 'yyy'
+      },
+      github: {
+        key: 'xxx',
+        secret: 'yyy'
+      },
+      google: {
+        key: 'xxx',
+        secret: 'yyy'
+      }
+    }
   },
 
   test: {

@@ -9,6 +9,7 @@ var compress = require('compression');
 var methodOverride = require('method-override');
 var swig = require('swig');
 var passport = require('passport');
+var session = require('express-session');
 
 module.exports = function (app, config) {
   var env = process.env.NODE_ENV || 'development';
@@ -34,6 +35,12 @@ module.exports = function (app, config) {
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
 
+  app.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: false
+    }));
+    
   //Passport
   require('./passport')();
   app.use(passport.initialize());
