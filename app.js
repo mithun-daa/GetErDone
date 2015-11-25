@@ -1,7 +1,20 @@
 
 
 var express = require('express'),
+  mongoose = require('mongoose'),
+  glob = require('glob'),
   config = require('./config/config');
+
+mongoose.connect(config.db);
+var db = mongoose.connection;
+db.on('error', function () {
+  throw new Error('unable to connect to database at ' + config.db);
+});
+
+var models = glob.sync(config.root + '/app/models/*.js');
+models.forEach(function (model) {
+  require(model);
+});
 
 var app = express();
 
