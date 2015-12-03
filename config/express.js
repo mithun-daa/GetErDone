@@ -44,6 +44,7 @@ module.exports = function (app, config) {
   //Passport
   require('./passport')();
   app.use(passport.initialize());
+  app.use(passport.session());
   
   var controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach(function (controller) {

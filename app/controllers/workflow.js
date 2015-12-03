@@ -9,7 +9,16 @@ module.exports = function (app) {
 };
 
 router.get('/Workflow', function (req, res) {
-  Workflow.find(function (err, workflows) {
+  console.log(req.query);
+  //var email = req.user.email;
+  var email = 'mithunster@gmail.com'
+  var Resource = Workflow;
+  
+  if(req.query.active && req.query.active === 'true') {
+    Resource = WorkflowInstance;
+  }
+  
+  Resource.find({tasks: {$elemMatch: {assignedTo: email}}}, function (err, workflows) {
     if (err) {
       res.status(500).send({
         message: 'Error while getting Workflows'
