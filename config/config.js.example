@@ -26,7 +26,8 @@ var config = {
         key: 'xxx',
         secret: 'yyy'
       }
-    }
+    },
+    db: 'mongodb://localhost/myapp'
   },
 
   test: {

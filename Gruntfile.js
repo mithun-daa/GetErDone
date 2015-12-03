@@ -24,6 +24,12 @@ module.exports = function (grunt) {
         }
       }
     },
+    ts: {
+      default: {
+        files: [{ src: ['client/app/**/*.ts'], dest: 'public/js/app' }],
+        tsconfig: 'client/tsconfig.json'
+      }
+    },
     watch: {
       options: {
         nospawn: true,
@@ -36,6 +42,12 @@ module.exports = function (grunt) {
           'config/*.js'
         ],
         tasks: ['develop', 'delayed-livereload']
+      },
+      client: {
+        files: [
+          'client/**/*.ts'
+        ],
+        tasks: ['ts']
       },
       css: {
         files: [
@@ -51,9 +63,9 @@ module.exports = function (grunt) {
           'app/views/*.swig',
           'app/views/**/*.swig'
         ],
-        options: { livereload: reloadPort }
-      }
-    }
+        options: { livereload: reloadPort },
+      },
+    },
   });
 
   grunt.config.requires('watch.js.files');
@@ -63,14 +75,14 @@ module.exports = function (grunt) {
   grunt.registerTask('delayed-livereload', 'Live reload after the node server has restarted.', function () {
     var done = this.async();
     setTimeout(function () {
-      request.get('http://localhost:' + reloadPort + '/changed?files=' + files.join(','),  function(err, res) {
-          var reloaded = !err && res.statusCode === 200;
-          if (reloaded)
-            grunt.log.ok('Delayed live reload successful.');
-          else
-            grunt.log.error('Unable to make a delayed live reload.');
-          done(reloaded);
-        });
+      request.get('http://localhost:' + reloadPort + '/changed?files=' + files.join(','), function (err, res) {
+        var reloaded = !err && res.statusCode === 200;
+        if (reloaded)
+          grunt.log.ok('Delayed live reload successful.');
+        else
+          grunt.log.error('Unable to make a delayed live reload.');
+        done(reloaded);
+      });
     }, 500);
   });
 
@@ -78,5 +90,9 @@ module.exports = function (grunt) {
     'less',
     'develop',
     'watch'
+  ]);
+
+  grunt.registerTask('tsc', [
+    'ts'
   ]);
 };
