@@ -88,11 +88,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'less',
+    'ts',
     'develop',
     'watch'
-  ]);
-
-  grunt.registerTask('tsc', [
-    'ts'
   ]);
 };
