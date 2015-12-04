@@ -1,0 +1,8 @@
+<div>
+	my active workflows
+	<ul>
+		<li *ng-for="#aw of activeWorkflows">
+			<workflow-card [workflow]="aw"></workflow-card>
+		</li>
+	</ul>
+</div>

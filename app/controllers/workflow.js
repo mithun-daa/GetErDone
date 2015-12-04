@@ -9,7 +9,6 @@ module.exports = function (app) {
 };
 
 router.get('/Workflow', function (req, res) {
-  console.log(req.query);
   //var email = req.user.email;
   var email = 'mithunster@gmail.com'
   var Resource = Workflow;
@@ -40,6 +39,21 @@ router.post('/Workflow', function (req, res) {
 
     res.status(201).json(newWorkflow);
   })
+});
+
+router.post('/Workflow/:id/Task', function(req, res) {
+  Workflow.findByIdAndUpdate(req.params.id,
+    {$push: {tasks: req.body}}, 
+    { new: true},
+    function (err, workflow) {
+    if (err) {
+      res.status(500).send({
+        message: 'Error while adding Task'
+      });
+    }
+    
+    res.status(200).json(workflow);    
+  });
 });
 
 router.post('/Workflow/:id/Instantiate', function (req, res) {

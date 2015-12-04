@@ -1,5 +1,6 @@
-import {Component} from 'angular2/angular2';
+import {Component, NgFor} from 'angular2/angular2';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {WorkflowComponent} from './workflow.component';
 
 //HTTP_PROVIDERS has to be included for this to work
 //And the viewProviders needs to be set up
@@ -7,11 +8,12 @@ import {Http, HTTP_PROVIDERS} from 'angular2/http';
 //EXCEPTION: No provider for Http
 
 @Component({
-    selector: 'active-workflows',
-    templateUrl: 'templates/active-workflows.html',
+    selector: 'workflow-list',
+    templateUrl: 'templates/workflow-list.html',
     viewProviders: [HTTP_PROVIDERS],
+    directives: [NgFor, WorkflowComponent]
 })
-export class ActiveWorkflows {
+export class WorkflowListComponent {
     public activeWorkflows;
     
     constructor(http: Http){

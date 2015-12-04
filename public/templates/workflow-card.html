@@ -1,0 +1,9 @@
+{{workflow.name}}
+<button>Add Step</button>
+<task-edit [task]="newTask" (saved)="onSaved($event)" (canceled)="onCanceled($event)"></task-edit>
+<ul>
+	<li *ng-for="#task of workflow.tasks">
+		<task-card [task]="task">
+		</task-card>
+	</li>
+</ul>

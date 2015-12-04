@@ -7,3 +7,4 @@ config/config.js
 npm-debug.log
 public/js/app
 .baseDir*
+.tscache/

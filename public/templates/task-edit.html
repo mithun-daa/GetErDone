@@ -1,0 +1,7 @@
+<div style="border:1px solid gray; padding:10px">
+	Title: <input [(ng-model)]="task.title">
+	Description: <input [(ng-model)]="task.description">
+	Assigned To: <input [(ng-model)]="task.assignedTo">
+	<button (click)="onSaved()">save</button>
+	<button (click)="onCanceled()">cancel</button>
+</div>
