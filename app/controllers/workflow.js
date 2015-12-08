@@ -2,6 +2,7 @@ var express = require('express'),
   router = express.Router(),
   mongoose = require('mongoose'),
   Workflow = mongoose.model('Workflow'),
+  Task = mongoose.model('Task'),
   WorkflowInstance = mongoose.model('WorkflowInstance');
 
 module.exports = function (app) {
@@ -12,12 +13,12 @@ router.get('/Workflow', function (req, res) {
   //var email = req.user.email;
   var email = 'mithunster@gmail.com'
   var Resource = Workflow;
-  
-  if(req.query.active && req.query.active === 'true') {
+
+  if (req.query.active && req.query.active === 'true') {
     Resource = WorkflowInstance;
   }
-  
-  Resource.find({tasks: {$elemMatch: {assignedTo: email}}}, function (err, workflows) {
+
+  Resource.find({ tasks: { $elemMatch: { assignedTo: email } } }, function (err, workflows) {
     if (err) {
       res.status(500).send({
         message: 'Error while getting Workflows'
@@ -35,25 +36,25 @@ router.post('/Workflow', function (req, res) {
       res.status(500).send({
         message: 'Error while saving Workflow'
       });
-    }
+    };
 
     res.status(201).json(newWorkflow);
-  })
+  });
 });
 
-router.post('/Workflow/:id/Task', function(req, res) {
+router.put('/Workflow/:id', function (req, res) {
   Workflow.findByIdAndUpdate(req.params.id,
-    {$push: {tasks: req.body}}, 
-    { new: true},
+    { name: req.body.name, description: req.body.description },
+    { new: true },
     function (err, workflow) {
-    if (err) {
-      res.status(500).send({
-        message: 'Error while adding Task'
-      });
-    }
-    
-    res.status(200).json(workflow);    
-  });
+      if (err) {
+        res.status(500).send({
+          message: 'Error while adding Task'
+        });
+      }
+
+      res.status(200).json(workflow);
+    });
 });
 
 router.post('/Workflow/:id/Instantiate', function (req, res) {
@@ -63,18 +64,18 @@ router.post('/Workflow/:id/Instantiate', function (req, res) {
         message: 'Error while instantiating Workflow'
       });
     }
-    
-    if(!workflow) {
+
+    if (!workflow) {
       res.status(404).json({ message: 'Workflow not found' });
     }
-    
+
     var workflowInstance = new WorkflowInstance();
-    workflowInstance.name =workflow.name;
+    workflowInstance.name = workflow.name;
     workflowInstance.created = new Date();
     workflowInstance.completed = false;
     workflowInstance.tasks = [];
-    
-    for(var i=0; i< workflow.tasks.length; i++){
+
+    for (var i = 0; i < workflow.tasks.length; i++) {
       workflowInstance.tasks.push({
         title: workflow.tasks[i].title,
         description: workflow.tasks[i].description,

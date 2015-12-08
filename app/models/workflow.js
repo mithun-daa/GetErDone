@@ -1,16 +1,19 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var Task = new Schema({
+var TaskSchema = new Schema({
   title: String,
   description: String,
   assignedTo: String
 });
 
+mongoose.model('Task', TaskSchema);
+
 var WorkflowSchema = new Schema({
   name: String,
-  tasks: [Task]
+  description: String,
+  tasks: [TaskSchema]
 });
 
 mongoose.model('Workflow', WorkflowSchema);
-
+mongoose.model('Task', TaskSchema);

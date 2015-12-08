@@ -1,5 +1,6 @@
 <div>
-	my active workflows
+	my workflows
+	<!--<button (click)="onAddNewWorkflow()">Add New Workflow</button>-->
 	<ul>
 		<li *ng-for="#aw of activeWorkflows">
 			<workflow-card [workflow]="aw"></workflow-card>

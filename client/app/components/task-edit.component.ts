@@ -7,18 +7,16 @@ import {Task} from '../models/task';
   directives: [FORM_DIRECTIVES]
 })
 export class TaskEditComponent {
-  // @Output() canceled = new EventEmitter();
+  @Output() canceled = new EventEmitter();
   @Output() saved = new EventEmitter();
   
   @Input() task:Task;
   
   onSaved() {
-    console.log('Saving...');
-    this.saved.next({});
+    this.saved.next(null);
   }
   
-  // onCanceled() {
-  //   console.log('Canceled..');
-  //   this.canceled.next({});
-  // }
+  onCanceled() {
+    this.canceled.next(null);
+  }
 }
