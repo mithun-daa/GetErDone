@@ -1,0 +1,14 @@
+<div class="c1">
+	<input type="text" [(ng-model)]="workflow.name">
+	<input type="text" [(ng-model)]="workflow.description">
+	<button (click)="onSaved()">Save</button>
+	<button (click)="onCanceled()">Cancel</button>
+	<!--<button>Add Step</button>-->
+	<!--<task-edit [hidden]="hideAddNewTaskForm" [task]="newTask" (saved)="onNewTaskSaved(workflow)" (canceled)="onNewTaskCanceled(workflow)"></task-edit>
+	<ul>
+		<li *ng-for="#task of workflow.tasks">
+			<task-card [task]="task" (task-deleted)="onTaskDeleted(task)" (task-edited)="onTaskEdited($event)">
+			</task-card>
+		</li>
+	</ul>-->
+</div>

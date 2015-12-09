@@ -1,6 +1,13 @@
 <div class="c1">
-	<div>{{task.title}}</div>
-	<div>{{task.description}}</div>
-	<div>{{task.assignedTo}}</div>
-	<button (click)="onDeleted()">Delete</button>
+	<div [hidden]="editing">{{task.title}}</div>
+	<div [hidden]="editing">{{task.description}}</div>
+	<div [hidden]="editing">{{task.assignedTo}}</div>
+	<input [hidden]="!editing" [(ng-model)]="task.title">
+	<input [hidden]="!editing" [(ng-model)]="task.description">
+	<input [hidden]="!editing" [(ng-model)]="task.assignedTo">
+	<button [hidden]="editing" (click)="editing=true">Edit</button>
+	<button [hidden]="editing" (click)="onDeleted()">Delete</button>
+	
+	<button [hidden]="!editing" (click)="onEdited()">Save</button>
+	<button [hidden]="!editing" (click)="onCanceled()">Cancel</button>
 </div>

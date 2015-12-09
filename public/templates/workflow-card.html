@@ -1,15 +1,17 @@
 <div class="c1">
-	<span [hidden]="editingWorkflow">{{workflow.name}}</span>
-	<input type="text" [hidden]="!editingWorkflow" [(ng-model)]="workflow.name">
-	<span [hidden]="editingWorkflow">{{workflow.description}}</span>
-	<input type="text" [hidden]="!editingWorkflow" [(ng-model)]="workflow.description">
-	<button [hidden]="editingWorkflow" (click)="editingWorkflow=true">Edit Workflow</button>
-	<button [hidden]="!editingWorkflow" (click)="onSaveWorkflow()">Save</button>
+	<span [hidden]="editMode">{{workflow.name}}</span>
+	<input type="text" [hidden]="!editMode" [(ng-model)]="workflow.name">
+	<span [hidden]="editMode">{{workflow.description}}</span>
+	<input type="text" [hidden]="!editMode" [(ng-model)]="workflow.description">
+	<button [hidden]="editMode" (click)="editMode=true">Edit Workflow</button>
+	<button [hidden]="editMode" (click)="onDeleteWorkflow()">Delete Workflow</button>
+	<button [hidden]="!editMode" (click)="onUpdateWorkflow()">Save</button>
+	<button [hidden]="!editMode" (click)="onCancelWorkflowUpdate()">Cancel</button>
 	<button (click)="hideAddNewTaskForm = false">Add Step</button>
 	<task-edit [hidden]="hideAddNewTaskForm" [task]="newTask" (saved)="onNewTaskSaved(workflow)" (canceled)="onNewTaskCanceled(workflow)"></task-edit>
 	<ul>
 		<li *ng-for="#task of workflow.tasks">
-			<task-card [task]="task" (task-deleted)="onTaskDeleted(task)">
+			<task-card [task]="task" (task-deleted)="onTaskDeleted(task)" (task-edited)="onTaskEdited($event)">
 			</task-card>
 		</li>
 	</ul>

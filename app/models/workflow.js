@@ -12,6 +12,7 @@ mongoose.model('Task', TaskSchema);
 var WorkflowSchema = new Schema({
   name: String,
   description: String,
+  createdBy: String,
   tasks: [TaskSchema]
 });
 

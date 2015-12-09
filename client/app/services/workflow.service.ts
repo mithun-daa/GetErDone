@@ -13,7 +13,13 @@ export class WorkflowService {
 	get() {
 		return this.http.get('/api/workflow');
 	}
-
+	
+	createNewWorkflow(workflow: Workflow) {
+		return this.http.post(`/api/workflow`, JSON.stringify(workflow), {
+			headers: this.headers
+		});
+	}
+	
 	updateWorkflow(workflow: Workflow) {
 		//send only what is needed
 		var wf = {
@@ -25,8 +31,18 @@ export class WorkflowService {
 		});	
 	}
 	
+	deleteWorkflow(workflow: Workflow) {
+		return this.http.delete(`/api/workflow/${workflow._id}`);	
+	}
+	
 	addNewTask(id: string, newTask: Task) {
 		return this.http.post(`/api/workflow/${id}/task`, JSON.stringify(newTask), {
+			headers: this.headers
+		});
+	}
+	
+	editTask(id:string, task: Task) {
+		return this.http.put(`/api/workflow/${id}/task/${task._id}`, JSON.stringify(task), {
 			headers: this.headers
 		});
 	}

@@ -1,9 +1,11 @@
 <div>
-	my workflows
-	<!--<button (click)="onAddNewWorkflow()">Add New Workflow</button>-->
+	Workflows
+	<button [hidden]="addMode" (click)="addMode=true">Add New Workflow</button>
+	<workflow-new [hidden]="!addMode" [workflow]="newWorkflow" (created)="onNewWorkflowCreated($event)"
+		(canceled)="onNewWorkflowCanceled()"></workflow-new>
 	<ul>
-		<li *ng-for="#aw of activeWorkflows">
-			<workflow-card [workflow]="aw"></workflow-card>
+		<li *ng-for="#workflow of workflows">
+			<workflow-card [workflow]="workflow" (deleted)="onWorkflowDeleted(workflow)"></workflow-card>
 		</li>
 	</ul>
 </div>

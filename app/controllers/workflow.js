@@ -11,14 +11,15 @@ module.exports = function (app) {
 
 router.get('/Workflow', function (req, res) {
   //var email = req.user.email;
-  var email = 'mithunster@gmail.com'
-  var Resource = Workflow;
+  //var email = 'mithunster@gmail.com'
+  // var Resource = Workflow;
+  // console.log(req.user); 
+  // if (req.query.active && req.query.active === 'true') {
+  //   Resource = WorkflowInstance;
+  // }
 
-  if (req.query.active && req.query.active === 'true') {
-    Resource = WorkflowInstance;
-  }
-
-  Resource.find({ tasks: { $elemMatch: { assignedTo: email } } }, function (err, workflows) {
+  //Workflow.find({ tasks: { $elemMatch: { assignedTo: email } } }, function (err, workflows) {
+    Workflow.find({}, function (err, workflows) {
     if (err) {
       res.status(500).send({
         message: 'Error while getting Workflows'
@@ -31,6 +32,8 @@ router.get('/Workflow', function (req, res) {
 
 router.post('/Workflow', function (req, res) {
   var workflow = new Workflow(req.body);
+  workflow.createdBy = req.user.email;
+  
   workflow.save(function (err, newWorkflow) {
     if (err) {
       res.status(500).send({
@@ -55,6 +58,18 @@ router.put('/Workflow/:id', function (req, res) {
 
       res.status(200).json(workflow);
     });
+});
+
+router.delete('/Workflow/:id', function(req, res) {
+  Workflow.remove({_id: req.params.id}).remove(function(err){
+    if (err) {
+      res.status(500).send({
+        message: 'Error while deleting Workflow'
+      });
+    }
+    
+    res.status(204).send();
+  });
 });
 
 router.post('/Workflow/:id/Instantiate', function (req, res) {
