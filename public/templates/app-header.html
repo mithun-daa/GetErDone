@@ -1,3 +1,11 @@
-<div>
-	<h1>Get Er Done!</h1> Welcome {{ loggedInUser.name }} !!
-</div>
+	<header class="bp-header cf">
+			<div class="gd-logo">
+				<h2 class="gd-logo-heading">G</h2>
+			</div>
+		
+			<div class="bp-header__main">
+			
+				<span><h1 class="bp-header__title">{{ loggedInUser.name }}</h1></span>
+				<span class="header-ava"><img src="{{loggedInUser.photoUrl}}"/></span>
+			</div>
+		</header>

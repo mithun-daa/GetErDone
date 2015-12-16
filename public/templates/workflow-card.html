@@ -9,8 +9,8 @@
 	<button [hidden]="!editMode" (click)="onCancelWorkflowUpdate()">Cancel</button>
 	<button (click)="hideAddNewTaskForm = false">Add Step</button>
 	<task-edit [hidden]="hideAddNewTaskForm" [task]="newTask" (saved)="onNewTaskSaved(workflow)" (canceled)="onNewTaskCanceled(workflow)"></task-edit>
-	<ul>
-		<li *ng-for="#task of workflow.tasks">
+	<ul class="wf-card-list">
+		<li *ng-for="#task of workflow.tasks" class="item">
 			<task-card [task]="task" (task-deleted)="onTaskDeleted(task)" (task-edited)="onTaskEdited($event)">
 			</task-card>
 		</li>

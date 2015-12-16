@@ -23,6 +23,7 @@
 
 <body>
   <get-er-done>Loading...</get-er-done>
+  
   <script type="text/javascript">
     var user = {{ JSON.stringify(user) }}
   </script>
