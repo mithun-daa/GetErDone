@@ -1,3 +1,4 @@
+@import "variables.less";
 /* Icons (made with Icomoon.io) */
 @font-face {
 	font-family: 'feather';
@@ -34,14 +35,14 @@
 
 //logo
 .gd-logo {
-    padding: 0em 2em 0;
-	color: #dc5c5c;
+    padding: 0em 3em 0;
+	color: @accent;
 	
 	.gd-logo-heading {
 		    font-weight: bold;
     border: 1px solid;
-    padding: 0.3em 0.6em;
-    font-size: 2em;
+    padding: 0.3em 0.5em;
+   font-size: 2.4em;
     border-radius: 50%;
 	}
 }
@@ -108,7 +109,7 @@
 
 .menu__link:hover,
 .menu__link[data-submenu]:hover::after {
-	color: #dc5c5c;
+	color: @accent;
 }
 
 .menu__link--current::before {
@@ -119,7 +120,7 @@
 	top: 50%;
 	left: 0.5em;
 	height: 4px;
-	color: #dc5c5c;
+	color: @accent;
 }
 
 [class^='animate-'],
@@ -245,7 +246,7 @@
 	vertical-align: middle;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	color: #dc5c5c;
+	color: @accent;
 }
 
 .menu__breadcrumbs a:last-child {
@@ -357,7 +358,7 @@
     border: 5px solid;
     overflow: hidden;
     border-radius: 50%;
-    border-color: #DC5C5C;
+    border-color: @accent;
 }
 /* Blueprint header */
 
@@ -398,7 +399,7 @@
 	text-indent: 3px;
 	letter-spacing: 3px;
 	text-transform: uppercase;
-	color: #dc5c5c;
+	color: @accent;
 }
 
 .bp-tooltip:after {
@@ -425,7 +426,7 @@
 	letter-spacing: 0;
 	text-transform: none;
 	color: #fff;
-	background: #dc5c5c;
+	background: @accent;
 }
 
 .bp-nav {

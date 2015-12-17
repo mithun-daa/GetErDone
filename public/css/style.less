@@ -1,11 +1,12 @@
 @import "layout.less";
+@import "variables.less";
 
 /* Resets */
 
 *,
 *:after,
 *:before {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
@@ -13,89 +14,100 @@
 
 .cf:before,
 .cf:after {
-	content: ' ';
-	display: table;
+    content: ' ';
+    display: table;
 }
 
 .cf:after {
-	clear: both;
+    clear: both;
 }
 
 
 /* Main styles */
 
 body {
-	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
-	margin: 0;
-	color: #cecece;
-	background: #2a2b30;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+    margin: 0;
+    color: #cecece;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    .bg-gradient;
 }
 
 a {
-	text-decoration: none;
-	color: #fff;
-	outline: none;
+    text-decoration: none;
+    color: #fff;
+    outline: none;
 }
 
 a:hover {
-	color: #ddd;
+    color: #ddd;
 }
 
 .container {
-	overflow-y: auto;
-	height: 100vh;
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .add-btn {
- position: fixed;
-    right: 0;
-    bottom: 0;
+    position: absolute;
+    left: 50%;
+    top: 67px;
+    transform: translate(-50%, -50%);
     margin: 0 0 0 auto;
     padding: 2em 3em;
-
-	button.add-btn--icon {	
-		    background: transparent;
-    font-size: 2em;
-    font-weight: 100;
-    color: #FFFFFF;
-    padding: 0.5em 0.8em;
-    border: none;
-    background-color: #DC5C5C;
-    border-radius: 50%;
-	}
+    button.add-btn--icon {
+        background: transparent;
+        font-size: 2em;
+        font-weight: 100;
+        color: #FFFFFF;
+        padding: 0.5em 0.8em;
+        border: none;
+        background-color: @accent;
+        border-radius: 50%;
+    }
 }
+
 
 /* workflow datalist */
 
 ul.workflow-list {
-  display: flex;
+    display: flex;
     flex-direction: row;
     flex-flow: wrap;
-    
     li.card {
-    display: block;
-    background: white;
-    padding: 1em 1em;
-    margin: 1rem;
-	background: #3E3F48;
-    /* width: 33.3%; */
-    border-radius: 0.3rem;
+        display: block;
+        padding: 1em 1em;
+        margin: 1rem;
+        background-color: @card-bg;
+        .card-box-shadow;
+        .b-radius;
     }
 }
 
-
-ul.wf-card-list{
+ul.wf-card-list {
     list-style-type: decimal-leading-zero;
-    
     li.item {
-        border-bottom: 1px solid #DC5C5C;
-         padding: 1em 1em;
-         margin: 1rem;
-        
+        border-bottom: 1px solid @accent;
+        padding: 1em 1em;
+        margin: 1rem;
         &:last-child {
             border-bottom: none;
         }
     }
+}
+
+
+/* New Modal */
+.wf-new-modal {
+    position: absolute;
+    left: 50%;
+    top: 530px;
+    transform: translate(-50%, -50%);
+    background-color: #45464e;
+    width: 500px;
+    height: 500px;
+    z-index: 15;
+    border-radius: 6px;
+    padding: 5em;
 }
