@@ -1,13 +1,16 @@
-<div class="c1">
-	<div [hidden]="editing">{{task.title}}</div>
-	<div [hidden]="editing">{{task.description}}</div>
-	<div [hidden]="editing">{{task.assignedTo}}</div>
+<div class="task-content">
+	<div [hidden]="editing"><b>Title: &nbsp;</b>{{task.title}}</div>
+	<div [hidden]="editing"><b>Desc: &nbsp;</b> {{task.description}}</div>
+	<div [hidden]="editing"><b>Assignee: &nbsp;</b>{{task.assignedTo}}</div>
 	<input [hidden]="!editing" [(ng-model)]="task.title">
 	<input [hidden]="!editing" [(ng-model)]="task.description">
 	<input [hidden]="!editing" [(ng-model)]="task.assignedTo">
-	<button [hidden]="editing" (click)="editing=true">Edit</button>
-	<button [hidden]="editing" (click)="onDeleted()">Delete</button>
+	<div class="task-actions">
+	<button title="Edit" class="default" [hidden]="editing" (click)="editing=true">Edit</button>
+	<button title="Delete" class="default" [hidden]="editing" (click)="onDeleted()">Delete</button>
 	
-	<button [hidden]="!editing" (click)="onEdited()">Save</button>
-	<button [hidden]="!editing" (click)="onCanceled()">Cancel</button>
+	<button class="default" [hidden]="!editing" (click)="onEdited()">Save</button>
+	<button class="default" [hidden]="!editing" (click)="onCanceled()">Cancel</button>
+	</div>
+		
 </div>

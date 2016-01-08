@@ -1,18 +1,26 @@
-<div class="c1">
-	<span [hidden]="editMode">{{workflow.name}}</span>
-	<input type="text" [hidden]="!editMode" [(ng-model)]="workflow.name">
-	<span [hidden]="editMode">{{workflow.description}}</span>
-	<input type="text" [hidden]="!editMode" [(ng-model)]="workflow.description">
-	<button [hidden]="editMode" (click)="editMode=true">Edit Workflow</button>
-	<button [hidden]="editMode" (click)="onDeleteWorkflow()">Delete Workflow</button>
-	<button [hidden]="!editMode" (click)="onUpdateWorkflow()">Save</button>
-	<button [hidden]="!editMode" (click)="onCancelWorkflowUpdate()">Cancel</button>
-	<button (click)="hideAddNewTaskForm = false">Add Step</button>
+<div class="card-header">
+	<div class="card-header--name">
+		<h2 [hidden]="editMode">{{workflow.name}}</h2>
+		<input type="text" [hidden]="!editMode" [(ng-model)]="workflow.name">
+		<h2 [hidden]="editMode">{{workflow.description}}</h2>
+		<input type="text" [hidden]="!editMode" [(ng-model)]="workflow.description">
+	</div>
+	
+	<div class="card-header--action">
+		<button title="Edit Workflow" class="edit" [hidden]="editMode" (click)="editMode=true"><i class="fa fa-pencil"></i></button>
+		<button title="Delete Workflow" class="delete" [hidden]="editMode" (click)="onDeleteWorkflow()"><i class="fa fa-trash-o"></i></button>
+		<button [hidden]="!editMode" (click)="onUpdateWorkflow()">Save</button>
+		<button [hidden]="!editMode" (click)="onCancelWorkflowUpdate()">Cancel</button>
+	</div>
+	
+</div>	
+<div class="new-step">
+<button class="new-step--button" (click)="hideAddNewTaskForm = false">Add Step</button>
 	<task-edit [hidden]="hideAddNewTaskForm" [task]="newTask" (saved)="onNewTaskSaved(workflow)" (canceled)="onNewTaskCanceled(workflow)"></task-edit>
-	<ul class="wf-card-list">
-		<li *ng-for="#task of workflow.tasks" class="item">
-			<task-card [task]="task" (task-deleted)="onTaskDeleted(task)" (task-edited)="onTaskEdited($event)">
-			</task-card>
-		</li>
-	</ul>
 </div>
+<ul class="card-list">
+	<li *ng-for="#task of workflow.tasks" class="card-list--item">
+		<task-card [task]="task" (task-deleted)="onTaskDeleted(task)" (task-edited)="onTaskEdited($event)">
+		</task-card>
+	</li>
+</ul>
