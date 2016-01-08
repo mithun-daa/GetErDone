@@ -1,4 +1,4 @@
-@import "layout.less";
+
 @import "variables.less";
 
 /* Resets */
@@ -23,15 +23,24 @@
 }
 
 
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+
 /* Main styles */
 
 body {
-    font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
-    margin: 0;
-    color: #cecece;
+    font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', Helvetica, Arial, sans-serif;
+	background: #33363D;
+	color: white;
+	font-weight: 300;
+	line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    .bg-gradient;
 }
 
 a {
@@ -48,6 +57,143 @@ a:hover {
     overflow-y: auto;
     height: 100vh;
 }
+
+/* Logo */
+.gd-logo {
+    padding: 0em 3em 0;
+	color: @accent;
+	
+	.gd-logo-heading {
+		    font-weight: bold;
+    padding: 0.3em 0.5em;
+   font-size: 2.4em;
+
+	}
+}
+
+
+
+
+/* Login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+	
+		.login {
+		width: 21em;
+		height: 32em;
+		}
+		.login-header {
+		background: @accent;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		}
+		.login h1 {
+		color: #FFF;
+		font-size: 2.6em;
+		text-align: center;
+		font-weight: 600;
+		margin-bottom: 0;
+		}
+		.login p {
+		 margin-top: 10px;
+		 font-weight: 400;
+		}
+		.login-content {
+		background: #FFF;
+		height: 24em;
+		
+			.login-link {
+			padding: 1em;
+			width: 10.5em;
+			height: 12.03008em;
+			text-align: center;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			float: left;
+			
+			i{
+			font-size: 1.3rem;
+			}
+			
+			 &.google {
+				background: indianred; 
+			 }
+			 &.github {
+				 background: #292929;
+			 }
+			 &.twitter {
+				 background: steelblue; 
+			 }
+			 &.fb {
+				 background: #1E5A94; 
+			 }
+			
+			}
+		
+		}
+}
+
+
+/* Menu styles */
+
+.menu {
+	position: fixed;
+	top: 120px;
+	left: 0;
+	width: 300px;
+	height: calc(100vh - 120px);
+	background: #1c1d22;
+}
+
+
+
+.header-ava {
+	width: 70px;
+    height: 70px;
+    border: 5px solid;
+    overflow: hidden;
+    border-radius: 50%;
+    border-color: @accent;
+}
+
+.bp-header {
+	display: -webkit-flex;
+	display: flex;
+}
+
+.bp-header__main {
+    margin: 0 0 0 auto;
+    padding: 2em 3em 0;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+	
+	span {
+		&:first-child {  padding: 1em;}
+	}
+}
+
+
+.bp-header__title {
+	font-size: 1.3em;
+	font-weight: 400;
+	line-height: 1.3;
+	margin: 0.25em 0 0;
+}
+
+
+.bp-nav {
+	margin: 0.5em 0 0 auto;
+	text-align: right;
+}
+
 
 .add-btn {
     position: absolute;
@@ -75,28 +221,159 @@ ul.workflow-list {
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
-    li.card {
-        display: block;
-        padding: 1em 1em;
-        margin: 1rem;
-        background-color: @card-bg;
-        .card-box-shadow;
-        .b-radius;
-    }
+	
+	@media (max-width: 690px) {
+		display: block;
+	}
+	
+}	
+
+li.workflow-list--card {
+	flex: 1 1 300px;
+    max-height: 100%;
+    min-height: 400px;
+    margin: 0 10px 20px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    overflow-y: scroll;
+	
+	@media (max-width: 690px) {
+		margin-bottom: 30px;
+	}
+	
+	h2 {
+		font-size: 0.8rem;
+		margin: 0;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+	
+	&:nth-child(4n+1) {
+		.card-header
+	     {
+			background: @card-orange;
+		}
+	}
+	
+	&:nth-child(3n+1) {
+		.card-header {
+			background: @card-blue;
+		}
+	}
+	
+	&:nth-child(2n+1) {
+		.card-header{
+			background: @card-yellow;
+		}
+	}
+	
+	&:nth-child(1n+8) {
+		.card-header{
+		background: @card-green;
+		}
+	}
 }
 
-ul.wf-card-list {
-    list-style-type: decimal-leading-zero;
-    li.item {
-        border-bottom: 1px solid @accent;
-        padding: 1em 1em;
-        margin: 1rem;
-        &:last-child {
-            border-bottom: none;
-        }
-    }
+
+ul.card-list {
+	
+	li.card-list--item {
+	display: flex;
+	margin: 10px;
+    padding: 1em;
+    height: auto;
+	background: rgba(255, 255, 255, 0.16);
+	transition: @ease-out;
+	
+	.panel {
+		height: 100%;
+		background: grey;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 10px
+	}
+	}
+	
 }
 
+.card-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	
+	.card-header--name {
+	display: flex;
+	}
+	
+}
+
+/*move to ui elements.less*/
+     button {
+		  &.edit, &.delete, &.default {
+			background: transparent;
+			border: 1px solid white;
+			border-radius: 20px;
+			padding: 0.3em 1.6em;
+			color: white;
+		  }
+	  }
+	  
+.new-step {
+   position: relative;
+    bottom: 0;
+    width: 100%;
+	
+	.new-step--button {
+    width: 100%;
+    background: rgb(64, 65, 73);
+    border: none;
+    padding: 1em;
+	color: white;
+	}
+	
+	.task-edit--content {
+		background: #FFFFFF;
+		top: 0;
+		padding: 1em;
+		height: 200px;
+		left: 0;
+		font-weight: 600;
+		font-size: 0.8rem;
+		color: black;
+		transition: @ease-out;
+		
+	}
+	
+}
+
+
+.task-content {
+	font-weight: 400;
+	b {
+		font-size: 0.8rem;
+		margin: 0;
+		text-transform: uppercase;
+		font-weight: 600;
+	    }
+		
+.task-actions {
+	margin-top: 1em;
+}
+}
+
+input, select {
+    width: 100%;
+    padding: 0.2rem;
+    line-height: 1.2;
+    margin-bottom: 0.7rem;
+    background-color: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+}
 
 /* New Modal */
 .wf-new-modal {
@@ -111,3 +388,4 @@ ul.wf-card-list {
     border-radius: 6px;
     padding: 5em;
 }
+

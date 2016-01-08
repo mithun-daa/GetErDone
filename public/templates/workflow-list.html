@@ -1,7 +1,7 @@
 <div>
 		
 	<ul class="workflow-list">
-		<li *ng-for="#workflow of workflows" class="card">
+		<li *ng-for="#workflow of workflows" class="workflow-list--card">
 			<workflow-card [workflow]="workflow" (deleted)="onWorkflowDeleted(workflow)"></workflow-card>
 		</li>
 	</ul>

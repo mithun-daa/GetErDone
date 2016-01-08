@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<title>{{ title }}</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<script src="js/libs/system.src.js"></script>
 		<script src="js/libs/angular2.dev.js"></script>
